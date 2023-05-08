@@ -13,15 +13,18 @@
 //==============================================================================
 /**
 */
-class AverageSleepersAudioProcessor  : public juce::AudioProcessor
+class ES5ControllerAudioProcessor  : public juce::AudioProcessor
                             #if JucePlugin_Enable_ARA
                              , public juce::AudioProcessorARAExtension
                             #endif
 {
 public:
     //==============================================================================
-    AverageSleepersAudioProcessor();
-    ~AverageSleepersAudioProcessor() override;
+    ES5ControllerAudioProcessor();
+    ~ES5ControllerAudioProcessor() override;
+
+    // Add the getChannelVoltage function declaration
+    float getChannelVoltage(int channelIndex) const;
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
@@ -57,6 +60,9 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
 private:
+    // Add the channelVoltages member variable
+    std::vector<float> channelVoltages;
+
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AverageSleepersAudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ES5ControllerAudioProcessor)
 };

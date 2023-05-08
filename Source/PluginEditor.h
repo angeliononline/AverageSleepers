@@ -14,11 +14,11 @@
 //==============================================================================
 /**
 */
-class AverageSleepersAudioProcessorEditor  : public juce::AudioProcessorEditor
+class ES5ControllerAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
 public:
-    AverageSleepersAudioProcessorEditor (AverageSleepersAudioProcessor&);
-    ~AverageSleepersAudioProcessorEditor() override;
+    ES5ControllerAudioProcessorEditor (ES5ControllerAudioProcessor&);
+    ~ES5ControllerAudioProcessorEditor() override;
 
     //==============================================================================
     void paint (juce::Graphics&) override;
@@ -27,7 +27,7 @@ public:
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-    AverageSleepersAudioProcessor& audioProcessor;
+    ES5ControllerAudioProcessor& audioProcessor;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AverageSleepersAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ES5ControllerAudioProcessorEditor)
 };

@@ -1,39 +1,44 @@
-/*
-  ==============================================================================
-
-    This file contains the basic framework code for a JUCE plugin editor.
-
-  ==============================================================================
-*/
-
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+// Add this constant at the top of the file
+const int numChannels = 8;
+
 //==============================================================================
-AverageSleepersAudioProcessorEditor::AverageSleepersAudioProcessorEditor (AverageSleepersAudioProcessor& p)
+ES5ControllerAudioProcessorEditor::ES5ControllerAudioProcessorEditor (ES5ControllerAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
-    // Make sure that before the constructor has finished, you've set the
-    // editor's size to whatever you need it to be.
-    setSize (400, 300);
+    setSize(120, 600);
 }
 
-AverageSleepersAudioProcessorEditor::~AverageSleepersAudioProcessorEditor()
+ES5ControllerAudioProcessorEditor::~ES5ControllerAudioProcessorEditor()
 {
 }
 
 //==============================================================================
-void AverageSleepersAudioProcessorEditor::paint (juce::Graphics& g)
+void ES5ControllerAudioProcessorEditor::paint (juce::Graphics& g)
 {
-    // (Our component is opaque, so we must completely fill the background with a solid colour)
     g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
 
-    g.setColour (juce::Colours::white);
-    g.setFont (15.0f);
-    g.drawFittedText ("Hello World!", getLocalBounds(), juce::Justification::centred, 1);
+    for (int i = 0; i < numChannels; ++i)
+    {
+        int circleX = getWidth() / 2 - 30;
+        int circleY = 15 + i * (60 + 15);
+
+        float voltage = audioProcessor.getChannelVoltage(i);
+
+        if (voltage > 0.0f)
+            g.setColour(juce::Colours::red);
+        else if (voltage < 0.0f)
+            g.setColour(juce::Colours::blue);
+        else
+            g.setColour(juce::Colours::grey);
+
+        g.fillEllipse(circleX, circleY, 60, 60);
+    }
 }
 
-void AverageSleepersAudioProcessorEditor::resized()
+void ES5ControllerAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..

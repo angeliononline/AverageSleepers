@@ -37,7 +37,7 @@ This plugin is built using the JUCE framework and can be used as a VST or AU plu
 
 ## License
 
-This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for more information.
+This project is licensed under the GNU General Public License v3.0. See the [LICENSE](https://github.com/angeliononline/AverageSleepers/blob/main/LICENSE.txt) file for more information.
 
 ## Contributing
 
